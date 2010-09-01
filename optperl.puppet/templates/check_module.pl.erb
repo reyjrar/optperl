@@ -1,0 +1,18 @@
+#!/opt/perl/<%= perl_version %>/bin/perl 
+
+use strict;
+use warnings;
+
+my $MODULE = shift @ARGV;
+
+if ( $MODULE =~ /[A-Z0-9_]+(\:\:[A-Z0-9_]+)*/ ) {
+	eval "require $MODULE;";
+	if( my $err = $@ ) {
+		# Failed Require
+		exit 1;	
+	}
+	else { 
+		exit 0;
+	}
+}
+die "invalid module name: $MODULE"; 

@@ -1,0 +1,30 @@
+PREREQUISITES:
+	opt-perl RPMS (see ../README)
+
+	A Local CPAN Mirror
+	-> Install CPAN::Mini on System Perl
+	-> Install CPAN::Inject on System Perl
+	-> Install CPAN::Checksums on System Perl
+
+	CPAN::Mini will allow you to create a local CPAN Mirror of only
+	the newest versions of every CPAN Module.
+	- http://search.cpan.org/~rjbs/CPAN-Mini-1.100630/
+
+	CPAN::Checksums will allow you to locally patch a CPAN distibution,
+	adjust the checksums, and use the patched version in your local
+	mirror in case the CPAN Author is slow to patch.
+	- http://search.cpan.org/~andk/CPAN-Checksums-2.05/
+
+	CPAN::Inject will give you the ability to add your in house
+	distributions to the local CPAN Mirror.
+	- http://search.cpan.org/~adamk/CPAN-Inject-0.11/
+
+Notes:
+
+files/prefs/prefs-DBD-Mysql.yml
+ - Update the information to your environment
+
+templates/CPAN-Config.pm.erb
+ - edit urllist paramter to your local CPAN Mirror
+
+

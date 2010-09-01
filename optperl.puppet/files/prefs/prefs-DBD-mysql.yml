@@ -1,0 +1,11 @@
+---
+comment: "Config Options to Build without Interaction"
+match:
+  module: "DBD::mysql"
+pl:
+  args:
+    - "--testdb=cpaninstall"
+    - "--testuser=cpan"
+    - "--testpassword=cpaninstaller"
+    - "--testhost=mysql.example.com"
+    - "--testport=3306"

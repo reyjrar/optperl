@@ -1,0 +1,16 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+use CPAN::Checksums qw(updatedir);
+
+my $DIR = shift @ARGV;
+my $success = updatedir( $DIR );
+
+if( $success == 1 ) {
+	print "Checksums already valid for $DIR\n";
+}
+elsif ( $success == 2 ) {
+	print "Checksums updated for $DIR\n";
+}

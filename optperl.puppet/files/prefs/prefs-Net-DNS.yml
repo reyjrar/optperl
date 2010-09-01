@@ -1,0 +1,8 @@
+---
+comment: "Config Options to Build without Interaction"
+match:
+  module: "Net::DNS"
+pl:
+  args:
+    - "--xs"
+    - "--no-online-tests"
