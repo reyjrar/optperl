@@ -1,6 +1,9 @@
 PREREQUISITES:
 	opt-perl RPMS (see ../README)
 
+	concat Puppet Module:
+	- http://github.com/ripienaar/puppet-concat
+
 	A Local CPAN Mirror
 	-> Install CPAN::Mini on System Perl
 	-> Install CPAN::Inject on System Perl
@@ -27,4 +30,34 @@ files/prefs/prefs-DBD-Mysql.yml
 templates/CPAN-Config.pm.erb
  - edit urllist paramter to your local CPAN Mirror
 
+USAGE:
 
+/etc/puppet/manifests/perl.pp:
+class perl {
+	include optperl
+
+	optperl::install { 'opt-perl-510':
+		version => 510
+	}
+
+    optperl::module {
+		[
+			'CHI', 'DBI',
+            'Digest::SHA', 'EV', 'IO::Prompt',
+            'Expect', 'IO::Socket::SSL',
+            'local::lib', 'Module::Pluggable',
+            'Net::IP::Resolver', 'Readonly',
+            'Regexp::Common', 'Regexp::Common::time',
+            'YAML', 'YAML::XS'
+		]:
+		version => 510
+	}
+
+	optperl::module { 'DBD::SQLite':
+		version => 510,
+		require => [
+			Package['sqlite-devel'],
+			Optperl::Module['DBI']
+		]
+	}
+}
