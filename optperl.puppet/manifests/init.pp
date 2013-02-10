@@ -1,6 +1,6 @@
 class optperl {
 
-	file { "/opt/perl/lib": 
+	file { "/opt/perl/lib":
 		ensure => directory,
 		owner => root, group => vcs_users, mode => 0775
 	}
@@ -10,14 +10,14 @@ class optperl {
 		source => "puppet:///optperl/cpan-checksum"
 	}
 
-	define install( $version ) {
+	define install( $version=516 ) {
 		# Variables
 		case "$version" {
-			510: {
-				$perl_version = '5.10.1'
+			514: {
+				$perl_version = '5.14.3'
 			}
-			512: {
-				$perl_version = '5.12.0'
+			516: {
+				$perl_version = '5.16.2'
 			}
 		}
 		$perl_root = "/opt/perl/${perl_version}"
@@ -64,19 +64,19 @@ class optperl {
 		}
 	}
 
-	define module( $version ) {
+	define module( $version=516 ) {
 		# Variables
 		case "$version" {
-			510: {
-				$perl_version = '5.10.1'
+			514: {
+				$perl_version = '5.14.3'
 			}
-			512: {
-				$perl_version = '5.12.0'
+			516: {
+				$perl_version = '5.16.2'
 			}
 		}
 		$perl_root = "/opt/perl/${perl_version}"
 
-		exec { "optperl-$version-$name": 
+		exec { "optperl-$version-$name":
 			environment => [
 				"CPAN_HOME=/root/.cpan-${version}",
 				"SHELL=/bin/sh",
@@ -91,7 +91,7 @@ class optperl {
 			unless => "${perl_root}/bin/check_module.pl $name"
 		}
 
-		concat::fragment { "perl-$verion-module-$name": 
+		concat::fragment { "perl-$verion-module-$name":
 			target => "${perl_root}/modules.manifest",
 			content => "${name}\n",
 		}

@@ -1,8 +1,6 @@
 Build RPMS:
 	- Download the perl.tar.gz
-	- extract
-    - mv perl-$VERISON opt-perl-$VERSION
-    - tar -zcf opt-perl-$VERSION.tar.gz opt-perl-$VERSION
+    - Edit the opt-perl-$VERSION.spec file
     - rpmbuild -bb SPECS/opt-perl-$VERSION.spec
 
 see optperl.puppet/README

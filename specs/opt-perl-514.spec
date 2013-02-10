@@ -1,8 +1,9 @@
-%define perl_version    5.10.1
-%define perl_epoch      4
+%define perl_version    5.14.3
+%define perl_epoch      1
+%define perl_admin      brad@divisionbyzero.net
 %define opt_prefix 	/opt/perl/%{perl_version}
 
-Name:           opt-perl-510
+Name:           opt-perl-514
 Version:        %{perl_version}
 Release:        2
 Epoch:          %{perl_epoch}
@@ -10,7 +11,7 @@ Summary:        The Perl programming language
 Group:          Development/Languages
 License:        (GPL+ or Artistic) and (GPLv2+ or Artistic)
 Url:            http://www.perl.org/
-Source0:        %{name}-%{perl_version}.tar.gz
+Source0:        perl-%{perl_version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{perl_version}-root-%(%{__id_u} -n)
 BuildRequires:  tcsh, dos2unix, man, groff
 BuildRequires:  gdbm-devel, db4-devel, zlib-devel
@@ -35,7 +36,7 @@ Install this package if you want to program in Perl or enable your
 system to handle Perl scripts.
 
 %prep
-%setup -q 
+%setup -q -n perl-%{perl_version}
 
 %build
 echo "RPM Build arch: %{_arch}"
@@ -47,7 +48,7 @@ echo "RPM Build arch: %{_arch}"
 /bin/sh Configure -des -Doptimize="$RPM_OPT_FLAGS" \
         -Dversion=%{perl_version} \
         -Dmyhostname=localhost \
-        -Dperladmin=lhotskyb@mail.nih.gov \
+        -Dperladmin=%{perl_admin} \
         -Dcc='%{__cc}' \
         -Dcf_by='Off-System Perl' \
         -Dinstallprefix=%{opt_prefix} \
